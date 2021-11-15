@@ -81,6 +81,7 @@ export default class AppView extends React.Component{
      * Get Action
      */
     getActions(file, event) {
+        console.log(11111111, file, event);
         const actions = [];
 
         // Directory options

@@ -1,10 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/App';
+import NiceMonacoTree from './components/NiceMonacoTree';
+window.NiceMonacoTree = NiceMonacoTree;
+// test
+// NiceMonacoTree.init(document.getElementById('root'), {
+//     fileList: ['package.json', 'README.md', 'src/test.js', 'src/index.js'],
+//     onClick: (file) => {
+//         console.log(file);
+//     },
+//     onDoubleClick: file => {
+//         console.log(222, file);
+//     },
+// });
 
-import './assets/main.css';
-import './assets/vscode-icons.css';
-
-
-ReactDOM.render( <App /> , document.getElementById('root'));
 

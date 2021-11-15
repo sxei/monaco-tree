@@ -1,11 +1,11 @@
 {
-  "name": "monaco-tree",
+  "name": "nice-monaco-tree",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "不依赖任何框架的、漂亮的monaco-tree，原仓库对react有依赖，fork from https://github.com/BlueMagnificent/monaco-tree",
+  "main": "dist/js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --open",
+    "dev": "webpack-dev-server --mode development --open",
     "build": "webpack"
   },
   "keywords": [],

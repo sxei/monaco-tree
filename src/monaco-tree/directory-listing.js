@@ -1,4 +1,4 @@
-const directoryListing =  ['changelog.txt', 'debug.js', 'license.txt', 'package.json', 'readme.md', 'release.js', 'controllers/api.js', 'controllers/chat.js', 'controllers/default.js', 
+const directoryListing =  ['license.txt', 'debug.js', 'changelog.txt', 'package.json', 'readme.md', 'release.js', 'controllers/api.js', 'controllers/chat.js', 'controllers/default.js', 
 'databases/channels.json', 'databases/users.json', 'definitions/auth.js', 'definitions/convertors.js', 'definitions/globals.js', 'definitions/helpers.js', 
 'definitions/localization.js', 'definitions/merge.js', 'definitions/operations.js', 'definitions/scheduler.js', 'models/account.js', 
 'models/channels.js', 'models/favorites.js', 'models/login.js', 'models/messages.js', 'models/tasks.js', 'models/users.js', 'public/favicon.ico', 'public/icon.png', 

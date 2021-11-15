@@ -6,7 +6,18 @@
 
 	</head>
 	<body>
-        <div id="root"></div>
+        <div id="root" style="height: 400px;"></div>
 		<script src="js/index.js"></script>
+		<script>
+			NiceMonacoTree.init(document.getElementById('root'), {
+			    fileList: ['package.json', 'README.md', 'src/test.js', 'src/index.js'],
+			    onClick: (file) => {
+			        console.log(file);
+			    },
+			    onDoubleClick: file => {
+			        console.log(222, file);
+			    },
+			});
+		</script>
 	</body>
 </html>
