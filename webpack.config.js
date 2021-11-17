@@ -43,16 +43,25 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"]
       },
+      // {
+      //   test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+      //   loader: "file-loader",
+      //   options: {
+      //       outputPath: 'assets',
+      //   }
+      // },
+      // {
+      //   test: /\.(jpe?g|png|gif)$/i, 
+      //   loader: "file-loader?name=/img/[name].[ext]"
+      // },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file-loader",
+        // svg图标都很小，直接用base64打包
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'url-loader',
         options: {
-            outputPath: 'assets',
+            name: './images/[name].[ext]',
+            limit: 999999
         }
-      },
-      {
-        test: /\.(jpe?g|png|gif)$/i, 
-        loader: "file-loader?name=/img/[name].[ext]"
       }
     ]
   }

@@ -1,6 +1,9 @@
 # nice-monaco-tree
 
-基于[monaco-tree](https://github.com/BlueMagnificent/monaco-tree)简单修改二次修改的monaco编辑器的树组件，主要是移除对React的依赖，新仓库不依赖任何框架，可在任何页面直接引用。
+基于[monaco-tree](https://github.com/BlueMagnificent/monaco-tree)简单二次修改而来的、不依赖任何框架的 monaco-tree 组件，主要改动：
+* 移除对React的依赖，新仓库不依赖任何框架，可在任何页面直接引用；
+* 样式微调，解决与其他页面融合时常见的样式冲突问题；
+* 优化onClick等方法的传参，支持带入filePath和fileIcon;
 
 使用方法：
 
@@ -19,7 +22,10 @@ NiceMonacoTree.init(document.getElementById('root'), {
 });
 ```
 
-# MONACO TREE
+# monaco-tree
+
+以下为原仓库 https://github.com/BlueMagnificent/monaco-tree 的自述文件：
+
 -----------
 A fairly successful attempt in extracting the tree view element hidden in [Monaco Editor](https://github.com/microsoft/monaco-editor) and making a [React](https://github.com/facebook/react) component of it.
 

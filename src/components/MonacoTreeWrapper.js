@@ -1,5 +1,6 @@
 import React from 'react';
 import { MonacoTree, TreeDnD, generateDirectoryTree, FileTemplate, directoryListing, Action, Separator } from "../monaco-tree";
+import { getFileIconLabel } from "../monaco-tree/file-utils";
 
 export default class MonacoTreeWrapper extends React.Component {
     constructor(props) {
@@ -66,7 +67,7 @@ export default class MonacoTreeWrapper extends React.Component {
 
 
         this.setState({
-            rootNode: generateDirectoryTree(this.props.fileList || directoryListing, 'ROOT'),
+            rootNode: generateDirectoryTree(this.props.fileList || directoryListing, '_ROOT_'),
             treeConfig: treeConfig
         });
     }
@@ -120,14 +121,22 @@ export default class MonacoTreeWrapper extends React.Component {
         if (file.isDirectory) {
             return;
         }
+        const files = [file.name];
+        let tempFile = file;
+        while(tempFile.parent && tempFile.parent.name !== '_ROOT_') {
+            tempFile = tempFile.parent;
+            files.unshift(tempFile.name);
+        }
+        const filePath = files.join('/');
+        const fileIcon = getFileIconLabel(file.name, file.isDirectory);
         if (Date.now() - this.lastClickedTime < 200 && this.lastClickedFile === file) {
             clearTimeout(this.timeout);
-            this.props.onDoubleClick && this.props.onDoubleClick(file);
+            this.props.onDoubleClick && this.props.onDoubleClick(filePath, file, fileIcon);
             console.log(file.name + " double clicked");
         }
         else {
             this.timeout = setTimeout(() => {
-                this.props.onClick && this.props.onClick(file);
+                this.props.onClick && this.props.onClick(filePath, file, fileIcon);
                 console.log(file.name + " clicked");
             }, 200);
         }
@@ -136,18 +145,14 @@ export default class MonacoTreeWrapper extends React.Component {
     }
 
     render() {
-        return (
-            <div className="vs-dark show-file-icons show-folder-icons" style={{height: '100%', position: "relative"}}>
-                <div className="workspaceContainer">
-                    {this.state.rootNode &&
-                        <MonacoTree 
-                            directory={this.state.rootNode}
-                            treeConfig={this.state.treeConfig}
-                            getActions={this.getActions}
-                            onClickFile={this.onClickFile}
-                        />}
-                </div>
-            </div>
-        );
+        return <div className="nice-monaco-tree vs-dark show-file-icons show-folder-icons">
+            {this.state.rootNode &&
+                <MonacoTree 
+                    directory={this.state.rootNode}
+                    treeConfig={this.state.treeConfig}
+                    getActions={this.getActions}
+                    onClickFile={this.onClickFile}
+                />}
+        </div>;
     }
 } 
