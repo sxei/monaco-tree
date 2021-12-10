@@ -4,7 +4,7 @@ import { TreeNode } from "./tree-node";
 
 /**
  * Generate the directory tree objects based on the passed directory file entries
- *
+ * 修改：将key的生成从自增数字改为filePath，确保每次重复生成时key固定
  * @param {Array<String>} [entries=[]]
  * @param {String} [root="Root"]
  * @returns {}
@@ -27,7 +27,7 @@ export function generateDirectoryTree(entries = [], root = "root"){
 
     let currentKey = 1;
 
-    const rootNode = new TreeNode( `${currentKey}`, root, true,  null );
+    const rootNode = new TreeNode( root, root, true,  null );
 
 
     //create the folders
@@ -38,10 +38,10 @@ export function generateDirectoryTree(entries = [], root = "root"){
         const pathLen = pathArr.length;
         
         let current = rootNode;  
-
+        let keyPrefix = root;
         for(let i = 0; i < pathLen; i++){
             let name = pathArr[i];
-
+            keyPrefix = `${keyPrefix}/${name}`;
             let index = i;
             
             // If the child node doesn't exist, create it
@@ -50,7 +50,7 @@ export function generateDirectoryTree(entries = [], root = "root"){
             if(child === undefined && index < ( pathLen - 1) ){
                 
                 currentKey = currentKey += 1;
-                child = new TreeNode( `${currentKey}`, name, true,  current );
+                child = new TreeNode( keyPrefix, name, true,  current );
                     
                 current.children.push(child);
                 
@@ -74,14 +74,14 @@ export function generateDirectoryTree(entries = [], root = "root"){
         const pathLen = pathArr.length;
         
         let current = rootNode; 
-    
+        let keyPrefix = root;
         if(pathLen === 1){
-
             let name = pathArr[0];
+            keyPrefix = `${keyPrefix}/${name}`;
 
             currentKey = currentKey += 1;
 
-            let node = new TreeNode( `${currentKey}`, name, false,  current );
+            let node = new TreeNode( keyPrefix, name, false,  current );
 
             current.children.push(node);
             
@@ -91,7 +91,7 @@ export function generateDirectoryTree(entries = [], root = "root"){
         
         // Loop through the path to add files
         pathArr.forEach( (name, index) => {
-    
+            keyPrefix = `${keyPrefix}/${name}`;
             // If the child node doesn't exist, create it
             let child = current.children.find(el => el.name === name);
 
@@ -100,7 +100,7 @@ export function generateDirectoryTree(entries = [], root = "root"){
 
                 currentKey = currentKey += 1;
 
-                child = new TreeNode( `${currentKey}`, name, false,  current );
+                child = new TreeNode( keyPrefix, name, false,  current );
 
                 current.children.push(child);
                 

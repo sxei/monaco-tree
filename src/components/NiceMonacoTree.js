@@ -8,7 +8,9 @@ import '../assets/vscode-icons.css';
 
 const NiceMonacoTree = {
     init: (el, props) => {
-        ReactDOM.render(<MonacoTreeWrapper {...props}/> , el);
+        const ref = React.createRef();
+        ReactDOM.render(<MonacoTreeWrapper ref={ref} {...props}/> , el);
+        return ref.current;
     },
     Action,
     Separator,

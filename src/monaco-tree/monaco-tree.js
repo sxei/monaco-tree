@@ -60,6 +60,7 @@ class MonacoTree extends React.Component{
         treeConfig.controller = createController(this, getActions, true),
     
         this.tree = new Tree(this.container, treeConfig );
+        window._tree = this.tree;
       }
 
       
@@ -89,7 +90,7 @@ class MonacoTree extends React.Component{
 
       render() {
         return (
-            <div className="fill" ref={(ref) => this.setContainer(ref)}>
+            <div ref={(ref) => this.setContainer(ref)} style={{width: '100%', height: '100%'}}>
             </div>
         )
       }

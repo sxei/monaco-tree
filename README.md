@@ -4,14 +4,14 @@
 * 移除对React的依赖，新仓库不依赖任何框架，可在任何页面直接引用；
 * 样式微调，解决与其他页面融合时常见的样式冲突问题；
 * 优化onClick等方法的传参，支持带入filePath和fileIcon;
+* 透出封装好的一些实用方法，诸如选中文件、自动递归展开所有文件夹等；
 
 使用方法：
-
 
 ```js
 import NiceMonacoTree from 'nice-monaco-tree';
 
-NiceMonacoTree.init(document.getElementById('root'), {
+const monacoTree = NiceMonacoTree.init(document.getElementById('root'), {
     fileList: ['package.json', 'README.md', 'src/test.js', 'src/index.js'],
     onClick: (file) => {
         console.log(file);
@@ -20,6 +20,22 @@ NiceMonacoTree.init(document.getElementById('root'), {
         console.log(222, file);
     },
 });
+monacoTree.setSelection('public/js/ui.js'); // 选中某个文件
+monacoTree.getSelection(); // 获取当前选中的文件
+monacoTree.expandAll(); // 递归展开所有文件夹
+monacoTree.expandFolder('public/js'); // 展开某个文件夹
+monacoTree.collapseAll(); // 递归收起所有文件夹
+monacoTree.collapseFolder('public/js'); // 收起某个文件夹
+monacoTree.getTree(); // 获取底层tree实例，上面挂载了很多方法和事件
+```
+
+## 开发
+
+```
+npm i
+npm run dev
+npm run build
+npm publish
 ```
 
 # monaco-tree
