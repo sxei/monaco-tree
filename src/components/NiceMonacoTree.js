@@ -10,6 +10,7 @@ const NiceMonacoTree = {
     init: (el, props) => {
         const ref = React.createRef();
         ReactDOM.render(<MonacoTreeWrapper ref={ref} {...props}/> , el);
+        wondow._niceMonacoTreeRef = ref;
         return ref.current;
     },
     Action,
